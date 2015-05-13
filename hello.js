@@ -13,6 +13,7 @@ router.get('/*', function(req, res, next) {
   if (values.length == 3) {
       var commands = "{\"" + values[1] + "\":\"" + values[2] + "\"}";
       res.write(commands);
+      mqtt.publish(commands);
    } else {
       res.write("Error 404: file is not found! lenght: " + values.length);
    }
