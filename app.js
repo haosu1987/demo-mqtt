@@ -7,6 +7,7 @@
 // This application uses express as it's web server
 // for more info, see: http://expressjs.com
 var express = require('express');
+var mqtt = require('./mqtt')
 
 // cfenv provides access to your Cloud Foundry environment
 // for more info, see: https://www.npmjs.com/package/cfenv
@@ -27,3 +28,5 @@ app.listen(appEnv.port, appEnv.bind, function() {
 	// print a message when the server starts listening
   console.log("server starting on " + appEnv.url);
 });
+
+mqtt.start();
