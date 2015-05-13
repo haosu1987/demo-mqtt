@@ -1,4 +1,7 @@
 # demo-mqtt
+
+The demo is used to demo for mqtt server by mosca.
+
 # Node.js Starter Application
 
 Bluemix provides a Node.js starter application as a template so that you can
