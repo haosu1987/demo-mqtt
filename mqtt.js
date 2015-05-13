@@ -1,10 +1,11 @@
 var mosca = require('mosca');
 
-var mqttport = process.env.VCAP_APP_MQTTPORT || 8000;
+var pt, server;
 
-exports.start = function () {
-    var server = new mosca.Server({
-        port: mqttport
+exports.start = function (p, onReady) {
+    pt = p;
+    server = new mosca.Server({
+        port: p
     });
 
     server.on('clientConnected', onClientConnected);
@@ -15,6 +16,6 @@ function onClientConnected(client) {
     console.log('Client <' + client.id + '> is connected.')
 }
 
-function onReady() {
-    console.log('MQTT server is listening on', mqttport)
+exports.publish = function (msg) {
+    server.publish(msg);
 }
