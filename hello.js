@@ -11,9 +11,10 @@ router.get('/*', function(req, res, next) {
       'Content-Type': 'text/plain'
   });
   if (values.length == 3) {
-      var commands = "{\"" + values[1] + "\":\"" + values[2] + "\"}";
-      res.write(commands);
-      mqtt.publish(commands);
+      var objs = "{\"" + values[1] + "\":\"" + values[2] + "\"}";
+      res.write(objs);
+      var commands = {topic: "hello", payload: objs};
+      mqtt.publish(JSON.stringify(commands));
    } else {
       res.write("Error 404: file is not found! lenght: " + values.length);
    }
